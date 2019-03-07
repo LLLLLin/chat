@@ -1,5 +1,4 @@
 from flask import (
-                   Blueprint,
                    render_template,
                     url_for,
                     session,
@@ -7,7 +6,7 @@ from flask import (
                     redirect,
                    )
 
-main = Blueprint('index',__name__)
+from .import main
 @main.route('/',methods=['GET','POST'])
 def index():
     if request.method == 'POST':
@@ -18,7 +17,7 @@ def index():
 @main.route('/chat',methods=['GET'])
 def chat():
     name = session.get('name','')
-    if name is None:
+    if name == '':
         return redirect(url_for('.index'))
     else:
         return render_template('chat.html')

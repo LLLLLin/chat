@@ -1,11 +1,13 @@
 from flask import session
 from flask_socketio import emit,join_room,leave_room
-from app import socketio
+from .. import socketio
+
 
 @socketio.on('joined', namespace='/chat')
 def joined(message):
+    print('debug', message)
     room = message.get('msg','')
-    print('debug', room)
+
     join_room(room)
     emit('status',{'msg': session.get('name') + 'join the room.'}, room= room)
 

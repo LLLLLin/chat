@@ -1,17 +1,7 @@
-from flask import Flask
-from flask_socketio import SocketIO
-from server.routes import main as index_route
-app = Flask(__name__)
+#!/bin/env python
+from chat import create_app, socketio
 
-app.register_blueprint(index_route)
-from  server import event
-app.config['SECRET_KEY'] = 'hklsdhflidash'
-app.debug = True
-socketio = SocketIO(app)
+app = create_app(debug=True)
+
 if __name__ == '__main__':
-    config ={
-        'debug': True,
-        'host':'localhost',
-        'port': 5000,
-    }
     socketio.run(app)
