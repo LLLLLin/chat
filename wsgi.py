@@ -6,4 +6,4 @@ sys.path.insert(0,abspath(dirname(__file__)))
 
 import app
 
-application = app.app
+application = app.socketio
